@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 45">
+<rect x="0.5" y="0.5" width="43" height="43" rx="21.5" fill="white" fill-opacity="0.42"/>
+<rect x="0.5" y="0.5" width="43" height="43" rx="21.5" stroke="#FFFDF8"/>
+<path id="Arrow 1" d="M32 21C32.5523 21 33 21.4477 33 22C33 22.5523 32.5523 23 32 23V22V21ZM11.2929 22.7071C10.9024 22.3166 10.9024 21.6834 11.2929 21.2929L17.6569 14.9289C18.0474 14.5384 18.6805 14.5384 19.0711 14.9289C19.4616 15.3195 19.4616 15.9526 19.0711 16.3431L13.4142 22L19.0711 27.6569C19.4616 28.0474 19.4616 28.6805 19.0711 29.0711C18.6805 29.4616 18.0474 29.4616 17.6569 29.0711L11.2929 22.7071ZM32 22V23H12V22V21H32V22Z" fill="white"/>
+</g>
+</svg>
