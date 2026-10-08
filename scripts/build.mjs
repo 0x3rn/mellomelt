@@ -5,7 +5,7 @@ import {optimizeImages} from './optimize-images.mjs';
 const root = path.resolve(import.meta.dirname, '..');
 const output = path.join(root, 'dist');
 await fs.mkdir(output, {recursive: true});
-for (const file of ['styles.css', 'fonts.css', 'interactions.js', 'parallax.js']) {
+for (const file of ['styles.css', 'fonts.css', 'interactions.js', 'parallax.js', 'reveals.js']) {
   await fs.copyFile(path.join(root, 'src', file), path.join(output, file));
 }
 const originalHTML=await fs.readFile(path.join(root,'src/index.html'),'utf8');

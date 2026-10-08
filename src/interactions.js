@@ -1,4 +1,5 @@
 import {setupParallax} from './parallax.js';
+import {setupReveals} from './reveals.js';
 const q=(id,root=document)=>root.querySelector(`[data-node-id="${id}"]`);
 const optimizedImages=JSON.parse(document.querySelector('#image-assets')?.textContent||'{}');
 const status=document.querySelector('#status');let timer;
@@ -228,6 +229,7 @@ for(const root of [desktop,mobile])root.querySelectorAll('[data-name="Button"]')
 // Font loading can alter initial box measurements, so recheck the fit afterwards.
 document.fonts.ready.then(fit);
 setupParallax({desktop,mobile});
+setupReveals({desktop,mobile});
 
 // Duplicate the full feature sequence so the loop joins without a gap or jump.
 document.fonts.ready.then(()=>{
