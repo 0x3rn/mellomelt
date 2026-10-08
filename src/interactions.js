@@ -1,3 +1,4 @@
+import {setupParallax} from './parallax.js';
 const q=(id,root=document)=>root.querySelector(`[data-node-id="${id}"]`);
 const optimizedImages=JSON.parse(document.querySelector('#image-assets')?.textContent||'{}');
 const status=document.querySelector('#status');let timer;
@@ -226,6 +227,7 @@ faqs(mobile,[['109:9308','Yes. We churn our gelato in small batches every mornin
 for(const root of [desktop,mobile])root.querySelectorAll('[data-name="Button"]').forEach(b=>{if(b.textContent.includes('Try it before'))activate(b,()=>jump(root===desktop?'37:2':'107:9117',root));});
 // Font loading can alter initial box measurements, so recheck the fit afterwards.
 document.fonts.ready.then(fit);
+setupParallax({desktop,mobile});
 
 // Duplicate the full feature sequence so the loop joins without a gap or jump.
 document.fonts.ready.then(()=>{

@@ -2038,6 +2038,8 @@ html{scrollbar-width:none}html::-webkit-scrollbar{display:none}[role=button]:foc
 #desktop [data-node-id="42:11"],#mobile [data-node-id="107:9128"]{width:100%;height:auto}
 #desktop [data-node-id="42:3"],#mobile [data-node-id="107:9129"]{width:100%;height:auto;text-align:center;white-space:normal}
 .responsive-image{display:contents}
+.parallax-window{overflow:clip}
+@media(prefers-reduced-motion:no-preference){.parallax-layer{transform:translate3d(0,var(--parallax-y,0px),0) rotate(var(--parallax-angle,0deg)) scale(var(--parallax-scale,1));transform-origin:center;backface-visibility:hidden}}
 .faq-answer{color:#fff}
 .faq-card>.faq-answer{max-width:calc(100% - 48px)}
 .faq-content{display:flex;align-items:center;width:100%;min-height:31.975px;padding-right:48px}
