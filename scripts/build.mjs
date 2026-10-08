@@ -16,8 +16,15 @@ const assets=path.join(output,'assets');
 for(const file of await fs.readdir(assets)){
   if(file.endsWith('.png')&&!file.startsWith('favicon-'))await fs.unlink(path.join(assets,file));
 }
-const cachedAssets=(await fs.readdir(assets)).filter(file=>/-[a-f0-9]{10}\.(webp|png)$/.test(file));
-await fs.writeFile(path.join(output,'_headers'),'/assets/*\n  Cache-Control: public, max-age=86400\n\n'+cachedAssets.map(file=>`/assets/${file}\n  Cache-Control: public, max-age=31536000, immutable\n`).join('\n'));
+// Group content-hashed images so the rule count stays below Cloudflare's 100-rule
+// limit. Keep unhashed SVGs and fonts separate: overlapping Cache-Control rules
+// are combined by Cloudflare rather than overridden by the more specific rule.
+await fs.writeFile(path.join(output,'_headers'),[
+  '/assets/*.webp\n  Cache-Control: public, max-age=31536000, immutable',
+  '/assets/favicon-*.png\n  Cache-Control: public, max-age=31536000, immutable',
+  '/assets/*.svg\n  Cache-Control: public, max-age=86400',
+  '/assets/*.woff2\n  Cache-Control: public, max-age=86400',
+].join('\n\n')+'\n');
 await fs.mkdir(path.join(output, 'vendor'), {recursive: true});
 await fs.copyFile(
   path.join(root, 'node_modules/framer-motion/dist/dom-mini.js'),
