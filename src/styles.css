@@ -2038,14 +2038,14 @@ html{scrollbar-width:none}html::-webkit-scrollbar{display:none}[role=button]:foc
 #desktop [data-node-id="42:11"],#mobile [data-node-id="107:9128"]{width:100%;height:auto}
 #desktop [data-node-id="42:3"],#mobile [data-node-id="107:9129"]{width:100%;height:auto;text-align:center;white-space:normal}
 .responsive-image{display:contents}
-.faq-answer,.n319,.n695{color:#fff}
-.faq-card>.faq-answer{font:600 16px/1.25 Onest,sans-serif;width:430px;max-width:calc(100% - 48px);align-self:flex-start;text-align:left;margin-top:16px}
-.faq-content{padding-right:48px}
-.faq-content div{max-width:100%;min-width:0}
+.faq-answer{color:#fff}
+.faq-card>.faq-answer{max-width:calc(100% - 48px)}
+.faq-content{display:flex;align-items:center;width:100%;min-height:31.975px;padding-right:48px}
+.faq-question{font-family:DynaPuff,sans-serif;font-weight:600;font-size:24px;line-height:normal;color:#fff;width:auto!important;height:auto!important;min-width:0!important;max-width:100%;white-space:normal!important}
 .faq-icon{position:absolute;right:16px;top:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;transform:translateY(-50%);pointer-events:none}
 .faq-icon-glyph{display:block;font:600 24px/1 DynaPuff,sans-serif;font-variation-settings:"wdth" 100;color:#fff;transform:rotate(-44deg);transition:transform .3s cubic-bezier(.22,1,.36,1)}
 .faq-card[aria-expanded="true"] .faq-icon-glyph{transform:rotate(0deg)}
-@media(max-width:700px){.faq-card>.faq-answer{font-size:12px;width:291px;max-width:calc(100% - 32px)}.faq-content{padding-right:32px}.faq-icon{right:8px;width:22px;height:22px}.faq-icon-glyph{font-size:16px}}
+@media(max-width:700px){.faq-card>.faq-answer{font:600 12px/1.25 Onest,sans-serif;width:291px;max-width:calc(100% - 32px);align-self:flex-start;text-align:left;margin-top:16px}.faq-content{min-height:21.309px;padding-right:32px}.faq-question{font-size:16px}.faq-icon{right:8px;width:22px;height:22px}.faq-icon-glyph{font-size:16px}}
 @media(prefers-reduced-motion:reduce){.faq-icon-glyph{transition:none}}
 .interactive-control{--hover-ease:cubic-bezier(.22,.61,.36,1);touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:background-color .3s cubic-bezier(.22,1,.36,1),color .3s cubic-bezier(.22,1,.36,1)}
 .interactive-button::after,.interactive-disclosure::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(255,255,255,.08);opacity:0;pointer-events:none;transition:opacity .32s var(--hover-ease)}

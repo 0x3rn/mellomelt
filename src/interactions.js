@@ -200,23 +200,26 @@ function faqs(root,configs){
  const parents=root===desktop?['72:31','72:25','72:21','72:20','102:2']:['109:9307','109:9306','109:9302','109:9301'];
  const heightOf=e=>parseFloat(getComputedStyle(e).height);
  const original=new Map(parents.map(id=>[id,heightOf(q(id,root))]));
- const deltas=new Map();
- configs.forEach(([id,answer,initial])=>{const card=q(id,root);const height=parseFloat(getComputedStyle(card).height);let open=initial;let body=initial?card.querySelectorAll('p')[1]:null;
-  const symbol=[...card.querySelectorAll('p')].find(p=>/^[xX]$/.test(p.textContent.trim()));
-  card.classList.add('faq-card');card.firstElementChild.classList.add('faq-content');
-  if(symbol){
-   const icon=document.createElement('span');icon.className='faq-icon';icon.setAttribute('aria-hidden','true');
-   const glyph=document.createElement('span');glyph.className='faq-icon-glyph';glyph.textContent='x';icon.append(glyph);
-   symbol.closest('[data-node-id]').remove();card.append(icon);
-  }
+ const baselines=new Map(configs.map(([id])=>[id,heightOf(q(id,root))]));
+ const updateLayout=()=>{
+  if(getComputedStyle(root).display==='none')return;
+  const extra=configs.reduce((total,[id])=>total+heightOf(q(id,root))-baselines.get(id),0);
+  for(const parent of parents)q(parent,root).style.height=(original.get(parent)+extra)+'px';
+  if(root===mobile){q('109:9333',root).style.top=(8820+extra)+'px';q('105:2',root).style.height=(9589+extra)+'px';root.style.minHeight=(9589+extra)+'px';}
+ };
+ configs.forEach(([id,answer,initial])=>{
+  const card=q(id,root),question=card.querySelector('p');let open=initial;
+  const answerText=initial?card.querySelectorAll('p')[1].textContent.trim():answer;
+  const header=document.createElement('div');header.className='faq-content';question.classList.add('faq-question');header.append(question);
+  const icon=document.createElement('span');icon.className='faq-icon';icon.setAttribute('aria-hidden','true');
+  const glyph=document.createElement('span');glyph.className='faq-icon-glyph';glyph.textContent='x';icon.append(glyph);
+  const body=document.createElement('p');body.className='faq-answer';body.textContent=answerText;body.hidden=!open;
+  card.classList.add('faq-card');card.replaceChildren(header,icon,body);
+  card.style.flexDirection='column';card.style.alignItems='stretch';card.style.height='auto';
   card.setAttribute('aria-expanded',String(open));
-  activate(card,()=>{open=!open;card.setAttribute('aria-expanded',String(open));if(!body){body=document.createElement('p');body.className='faq-answer';body.textContent=answer;card.append(body);}body.hidden=!open;
-   if(initial){let ancestor=body.parentElement;while(ancestor!==card){ancestor.style.height=open?'':'auto';ancestor=ancestor.parentElement;}card.style.height=open?'':(root===desktop?80:37.31)+'px';}else{card.style.flexDirection=open?'column':'';card.style.alignItems=open?'stretch':'';card.style.height=open?'auto':height+'px';}
-   deltas.set(id,heightOf(card)-height);const extra=[...deltas.values()].reduce((a,b)=>a+b,0);
-   for(const parent of parents)q(parent,root).style.height=(original.get(parent)+extra)+'px';
-   if(root===mobile){q('109:9333',root).style.top=(8820+extra)+'px';q('105:2',root).style.height=(9589+extra)+'px';root.style.minHeight=(9589+extra)+'px';}
-  },card.querySelector('p').textContent.trim());
+  activate(card,()=>{open=!open;card.setAttribute('aria-expanded',String(open));body.hidden=!open;updateLayout();},question.textContent.trim());
  });
+ updateLayout();window.addEventListener('resize',updateLayout);document.fonts.ready.then(updateLayout);
 }
 faqs(desktop,[['72:32','Yes. We churn our gelato in small batches every morning using fresh ingredients.',false],['72:38','',true],['72:44','Yes. Contact one of our shops to discuss gelato for your party or event.',false],['80:5','Collect a stamp each time you visit. Eight visits earn you a free treat.',false]]);
 faqs(mobile,[['109:9308','Yes. We churn our gelato in small batches every morning using fresh ingredients.',false],['109:9314','',true],['109:9321','Yes. Contact one of our shops to discuss gelato for your party or event.',false],['109:9327','Collect a stamp each time you visit. Eight visits earn you a free treat.',false]]);
