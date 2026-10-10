@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mellomelt.corstack.dev/sitemap.xml

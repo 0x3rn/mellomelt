@@ -13,3 +13,6 @@ Navigation, mobile menu, flavor selection, scoop configuration, pricing, and FAQ
 The feature strip loops continuously using Framer Motion's lightweight DOM animation API and respects reduced-motion preferences.
 
 The build uses Sharp to generate responsive WebP images from the untouched original PNGs. Cached conversions are kept in ignored `.cache/images/`. Each layout uses media-qualified picture sources, so the hidden layout does not fetch its image assets. Hero images load eagerly with a matching preload; other images load lazily. Transparent gelato artwork keeps its alpha channel. Dynamic flavor selection updates the optimized picture source as well.
+## Indexing and hosting
+
+The build includes the homepage HTTPS canonical, robots.txt, a homepage-only sitemap and a noindex 404 page. Cloudflare Workers uses wrangler.jsonc with worker/index.js and the dist asset binding. Worker-first routing redirects HTTP and HTML aliases with 301 responses while serving the existing design and assets. Missing pages and assets return a real 404. Run npm test to validate the build and routing. Publish through the repository’s connected GitHub build; do not deploy an uncommitted local build.

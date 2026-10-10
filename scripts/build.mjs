@@ -8,6 +8,9 @@ await fs.mkdir(output, {recursive: true});
 for (const file of ['styles.css', 'fonts.css', 'interactions.js', 'parallax.js', 'reveals.js']) {
   await fs.copyFile(path.join(root, 'src', file), path.join(output, file));
 }
+for (const file of ['robots.txt','sitemap.xml','404.html']) {
+  await fs.copyFile(path.join(root,'public',file),path.join(output,file));
+}
 const originalHTML=await fs.readFile(path.join(root,'src/index.html'),'utf8');
 const optimized=await optimizeImages(root,output,originalHTML);
 await fs.writeFile(path.join(output,'index.html'),optimized.html);
