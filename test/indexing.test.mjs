@@ -44,4 +44,3 @@ test('HEAD responses have no body and unsupported methods are rejected',async()=
  const head=await request('/',{method:'HEAD'});assert.equal(head.status,200);assert.equal(await head.text(),'');
  const post=await request('/',{method:'POST'});assert.equal(post.status,405);assert.equal(post.headers.get('allow'),'GET, HEAD');
 });
-
